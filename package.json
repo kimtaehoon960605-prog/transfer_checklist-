@@ -1,0 +1,50 @@
+{
+  "name": "transfer-checklist-tray",
+  "version": "1.0.0",
+  "private": true,
+  "description": "일반직 전보 셀프 체크리스트 Windows tray app",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist:win": "electron-builder --win portable --x64",
+    "dist:installer": "electron-builder --win nsis --x64"
+  },
+  "devDependencies": {
+    "electron": "^38.0.0",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "local.transferchecklist",
+    "productName": "전보 체크리스트",
+    "asar": true,
+    "files": [
+      "main.js",
+      "index.html",
+      "*.ico",
+      "*.png",
+      "package.json"
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "icon": "app.ico",
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "TransferChecklist.exe"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "전보 체크리스트"
+    }
+  }
+}
